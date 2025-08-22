@@ -3,17 +3,24 @@ from fixtures import (
     Functions    
 )
 import os
+from pages import homePage,deliveryPage
 
 
 def before_all(context):
+    #Instância do driver
     context.brw              = get_driver()
-    
+
+    #Comandos gerais
     commands                 = Functions(context.brw)
 
     context.click            = commands.click
     context.type             = commands.send_keys
     context.validate_text    = commands.validate_text
     context.validate_popup   = commands.validate_popup_message
+
+    #Páginas do PAGE OBJECTS
+    context.homePage         = homePage
+    context.deliveryPage     = deliveryPage
 
 
 def after_all(context):
