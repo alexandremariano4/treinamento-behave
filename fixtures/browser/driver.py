@@ -4,8 +4,9 @@ from selenium.webdriver import ChromeOptions
 
 def get_driver():
     browser_options = ChromeOptions()
-    # browser_options.add_argument('--headless=new')
+    browser_options.add_argument('--headless=new')
     browser_options.add_argument('--log-level=3')
+    browser_options.add_argument("--lang=pt-BR")
 
     try:
         browser_options.set_capability('browserName', 'chrome')
