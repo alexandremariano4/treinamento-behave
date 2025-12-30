@@ -24,8 +24,7 @@ jobs:
           pip install -r requirements.txt
           
       - name: Executar testes
-        run: |
-          behavex
+        run: behavex
 
       - name: Publicar artefatos
         uses: actions/upload-artifact@v4
