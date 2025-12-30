@@ -6,14 +6,16 @@ on:
       - master
 
 jobs:
-  build:
+  e2e:
     runs-on: ubuntu-latest
     services:
       selenium-grid:
         image: selenium/standalone-chrome:latest
+        options: --shm-size=2gb
         ports:
           - 4444:4444
           - 7900:7900
+        
     
     steps:
       - name: Checkout do código
