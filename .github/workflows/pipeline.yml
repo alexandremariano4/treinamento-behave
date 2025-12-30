@@ -8,6 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      selenium-grid:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+          - 7900:7900
+    
     steps:
       - name: Checkout do código
         uses: actions/checkout@v2
@@ -22,6 +29,10 @@ jobs:
           python3 -m venv .venv
           source ./.venv/bin/activate
           pip install -r requirements.txt
+      
+      - name: Aguardar Selenium Grid estar pronto
+        run: |
+          timeout 30 bash -c 'until curl -f http://localhost:4444/wd/hub/status; do sleep 1; done'
           
       - name: Executar testes
         run: |
