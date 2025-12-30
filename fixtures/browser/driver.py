@@ -4,9 +4,14 @@ from selenium.webdriver import ChromeOptions
 
 def get_driver():
     browser_options = ChromeOptions()
-    # browser_options.add_argument('--headless=new')
     browser_options.add_argument('--log-level=3')
     browser_options.add_argument("--lang=pt-BR")
+    browser_options.add_argument('--no-sandbox')
+    browser_options.add_argument('--disable-dev-shm-usage')
+    browser_options.add_argument('--disable-gpu')
+    browser_options.add_argument('--disable-extensions')
+    browser_options.add_argument('--disable-plugins')
+    browser_options.add_argument('--disable-blink-features=AutomationControlled')
 
     try:
         browser_options.set_capability('browserName', 'chrome')
@@ -21,7 +26,6 @@ def get_driver():
             options=browser_options
         )
     finally:
-        brw.maximize_window()
         brw.set_window_size(1920,1080)
         brw.implicitly_wait(10)
         return brw
